@@ -2,14 +2,15 @@ library printer_utils;
 
 import 'dart:io';
 
-import 'package:printer_utils/src/printer_alignment.dart';
 import 'package:printer_utils/src/printer_text.dart';
+import 'package:printer_utils/src/printer_text_style.dart';
+
+export 'src/printer_text_style.dart';
 
 class PrinterUtils {
   String _data = '';
 
-  String get content =>
-      '''
+  String get content => '''
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,18 +29,9 @@ class PrinterUtils {
 
   void text(
     String text, {
-    int? size,
-    bool? italic,
-    bool? bold,
-    PrinterAlignment? alignment,
+    PrinterTextStyle? style,
   }) {
-    _data += PrinterText(
-      text,
-      size: size,
-      italic: italic,
-      bold: bold,
-      alignment: alignment ?? PrinterAlignment.left,
-    ).html;
+    _data += PrinterText(text, style: style).html;
   }
 
   void convertToImage() {}

@@ -1,33 +1,32 @@
-import 'package:printer_utils/src/printer_alignment.dart';
+import 'package:printer_utils/src/printer_text_style.dart';
 
 class PrinterText {
   final String text;
-  final int? size;
-  final bool? italic;
-  final bool? bold;
-  final PrinterAlignment alignment;
+  final PrinterTextStyle? style;
 
   PrinterText(
     this.text, {
-    this.size,
-    this.italic,
-    this.bold,
-    required this.alignment,
+    this.style,
   });
 
   String get html => '<p $_alignHtml $_styleHtml>$text</p>';
 
-  String get _alignHtml => 'align="${alignment.name}"';
+  String get _alignHtml => 'align="${style?.align.name}"';
 
   String get _styleHtml {
-    String style = '';
+    String styleHtml = '';
 
-    if (size != null) style += 'font-size:$size%;';
-    if (italic == true) style += 'font-style:italic;';
-    if (bold == true) style += 'font-weight:bold;';
+    if (style == null) return '';
 
-    if (style.isEmpty) return '';
+    if (style!.scale != null) styleHtml += 'font-size:${style?.scale}%;';
+    if (style!.italic) styleHtml += 'font-style:italic;';
+    if (style!.bold) styleHtml += 'font-weight:bold;';
+    if (!style!.decoration.isNone) {
+      styleHtml += 'text-decoration:${style!.decoration.value};';
+    }
 
-    return 'style="$style"';
+    if (styleHtml.isEmpty) return '';
+
+    return 'style="$styleHtml"';
   }
 }
