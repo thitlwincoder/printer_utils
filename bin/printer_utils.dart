@@ -7,12 +7,13 @@ void main(List<String> arguments) {
   utils.text(
     'this is center',
     size: 200,
-    weight: 500,
+    bold: true,
     alignment: PrinterAlignment.center,
   );
   utils.text(
     'this is right',
     size: 300,
+    italic: true,
     alignment: PrinterAlignment.right,
   );
   // print(utils.content);

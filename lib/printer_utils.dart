@@ -8,7 +8,8 @@ import 'package:printer_utils/src/printer_text.dart';
 class PrinterUtils {
   String _data = '';
 
-  String get content => '''
+  String get content =>
+      '''
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,14 +28,16 @@ class PrinterUtils {
 
   void text(
     String text, {
-    double? size,
-    double? weight,
+    int? size,
+    bool? italic,
+    bool? bold,
     PrinterAlignment? alignment,
   }) {
     _data += PrinterText(
       text,
       size: size,
-      weight: weight,
+      italic: italic,
+      bold: bold,
       alignment: alignment ?? PrinterAlignment.left,
     ).html;
   }

@@ -2,14 +2,16 @@ import 'package:printer_utils/src/printer_alignment.dart';
 
 class PrinterText {
   final String text;
-  final double? size;
-  final double? weight;
+  final int? size;
+  final bool? italic;
+  final bool? bold;
   final PrinterAlignment alignment;
 
   PrinterText(
     this.text, {
     this.size,
-    this.weight,
+    this.italic,
+    this.bold,
     required this.alignment,
   });
 
@@ -21,7 +23,8 @@ class PrinterText {
     String style = '';
 
     if (size != null) style += 'font-size:$size%;';
-    if (weight != null) style += 'font-weight:$weight;';
+    if (italic == true) style += 'font-style:italic;';
+    if (bold == true) style += 'font-weight:bold;';
 
     if (style.isEmpty) return '';
 
