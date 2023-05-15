@@ -1,4 +1,5 @@
 import 'package:printer_utils/printer_utils.dart';
+import 'package:printer_utils/src/printer_text.dart';
 
 void main(List<String> arguments) {
   var utils = PrinterUtils();
@@ -20,6 +21,22 @@ void main(List<String> arguments) {
       align: PrinterAlign.right,
       decoration: PrinterTextDecoration.lineThrough,
     ),
+  );
+  utils.row(
+    cells: [
+      RowCell(
+        width: 30,
+        child: PrinterText('text'),
+      ),
+      RowCell(
+        width: 30,
+        child: PrinterText('text'),
+      ),
+      RowCell(
+        width: 30,
+        child: PrinterText('text'),
+      ),
+    ],
   );
   utils.saveHtml();
 }

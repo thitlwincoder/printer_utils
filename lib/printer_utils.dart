@@ -2,10 +2,11 @@ library printer_utils;
 
 import 'dart:io';
 
-import 'package:printer_utils/src/printer_text.dart';
-import 'package:printer_utils/src/printer_text_style.dart';
+import 'printer_utils.dart';
+import 'src/printer_text.dart';
 
 export 'src/printer_text_style.dart';
+export 'src/printer_row.dart';
 
 class PrinterUtils {
   String _data = '';
@@ -34,7 +35,11 @@ class PrinterUtils {
     _data += PrinterText(text, style: style).html;
   }
 
-  void convertToImage() {}
+  void row({
+    required List<RowCell> cells,
+  }) {
+    _data += PrinterRow(cells).html;
+  }
 
   void saveHtml() {
     File('index.html').writeAsString(content);
